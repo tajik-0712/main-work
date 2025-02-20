@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+
+/* start: Globals */
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--slate-700);
+}
+
+a, ul > li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+/* end: Globals */
+
+/* start: mark */
+.mark-section {
+    box-shadow: inset 0 160px 0 0 var(--emerald-500);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--slate-100);
+}
+.mark-container {
+    max-width: 1360px;
+    width: 100%;
+    height: 720px;
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, .1);
+    background-color: var(--white);
+    position: relative;
+}
+/* end: Chat */
+
+
+
+/* start: Sidebar */
+.mark-sidebar {
+    width: 64px;
+    background-color: var(--slate-100);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
+.mark-sidebar-logo {
+    font-size: 28px;
+    color: var(--emerald-600);
+    display: block;
+    text-align: center;
+    padding: 12px 8px;
+    text-decoration: none;
+}
+.mark-sidebar-menu {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 16px 0;
+}
+.mark-sidebar-menu > * > a {
+    display: block;
+    text-align: center;
+    padding: 12px 8px;
+    font-size: 24px;
+    text-decoration: none;
+    color: var(--slate-400);
+    position: relative;
+    transition: color .15s ease-in-out;
+}
+.mark-sidebar-menu > * > a:hover {
+    color: var(--slate-600);
+}
+.mark-sidebar-menu > .active > a {
+    box-shadow: inset 4px 0 0 0 var(--emerald-500);
+    color: var(--emerald-600);
+    background-color: var(--emerald-100);
+}
+.mark-sidebar-menu > * > a::before {
+    content: attr(data-title);
+    position: absolute;
+    top: 50%;
+    left: calc(100% - 16px);
+    border-radius: 4px;
+    transform: translateY(-50%);
+    font-size: 13px;
+    padding: 6px 12px;
+    background-color: rgba(0, 0, 0, .6);
+    color: var(--white);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .15s ease-in-out;
+}
+.mark-sidebar-menu > * > a:hover::before {
+    left: calc(100% - 8px);
+    opacity: 1;
+    visibility: visible;
+}
+.mark-sidebar-profile {
+    margin-top: auto;
+    position: relative;
+}
+.mark-sidebar-profile-toggle {
+    background-color: transparent;
+    border: none;
+    outline: transparent;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer;
+}
+.mark-sidebar-profile-toggle > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.mark-sidebar-profile-dropdown {
+    position: absolute;
+    bottom: 100%;
+    left: 16px;
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+    list-style-type: none;
+    border-radius: 4px;
+    padding: 4px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.9);
+    transform-origin: left bottom;
+    transition: all .15s ease-in-out;
+}
+.mark-sidebar-profile.active .mark-sidebar-profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+.mark-sidebar-profile-dropdown a {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--slate-400);
+    font-size: 14px;
+}
+.mark-sidebar-profile-dropdown a:hover {
+    background-color: var(--slate-100);
+    color: var(--slate-600);
+}
+.mark-sidebar-profile-dropdown a:active {
+    background-color: var(--slate-200);
+}
+.mark-sidebar-profile-dropdown a i {
+    margin-right: 12px;
+    font-size: 17px;
+}
+/* end: Sidebar */
+
+/* start: Content */
+
+.mark-content {
+    margin-left: 64px;
+    height: 100%;
+    width: calc(100% - 64px);
+}
+
+/* start: Conversation  */
+
+.conversation {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* start: header */
+
+.conversation-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: var(--emerald-500);
+}
+.conversation-header > ul {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 24px;
+
+    img {
+        position: relative;
+        object-fit: cover;
+        object-position: center;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, .4);
+    }
+}
+
+.header-menu {
+    position: relative;
+    display: flex;
+    gap: 8px;
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        background-color: #fff;
+        transition: all .3s ease-in-out;
+
+        i {
+            font-size: 18px;
+            color: var(--slate-700);
+        }
+    }
+
+    li:hover {
+        background-color: var(--slate-500);
+
+        i {
+            color: var(--slate-100);
+        }
+    }
+}
+/* end: header */
+
+/* start: news */
+
+.conversation-news {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 12px;
+    width: 100%;
+    height: 180px;
+    border-radius: 0px 0px 12px 12px;
+    background-color: var(--emerald-100);
+    transition: all .3s ease-in-out;
+}
+
+.news-title {
+    font-size: 32px;
+}
+
+.news-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px 12px 0 0 ;
+    width: 100%;
+    gap: 24px;
+    margin-top: 8px;
+    /* margin-left: 8px; */
+    /* margin-right: 8px; */
+    border-top: 1px solid #000;
+}
+
+.news-list li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 4px;
+    border-radius: 12px;
+    height: 80px;
+    width: 160px;
+    border: 1px solid var(--emerald-600);
+    color: var(--slate-50);
+    background-color: var(--emerald-400);
+    box-shadow: 0 2px 7px var(--emerald-400);
+}
+
+/* end: news */
+
+/* start: cards */
+
+.conversation-cards { 
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: -20px;
+    width: 100%;
+    height: 100%;
+}
+
+/* end: cards */
+
+/* end: Conversation  */
+
+/* end: Content */
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* start: Breakpoints */
+@media screen and (max-width: 1600px) {
+    .mark-container {
+        max-width: unset;
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .mark-sidebar {
+        top: unset;
+        bottom: 0;
+        width: 100%;
+        height: 48px;
+    }
+    .mark-sidebar-logo {
+        display: none;
+    }
+    .mark-sidebar-menu {
+        flex-direction: row;
+        padding: 0;
+    }
+    .mark-sidebar-menu > *,
+    .mark-sidebar-menu > * > a {
+        width: 100%;
+        height: 100%;
+    }
+    .mark-sidebar-menu > * > a {
+        padding: 8px;
+    }
+    .mark-sidebar-menu > .active > a {
+        box-shadow: inset 0 4px 0 0 var(--emerald-500);
+    }
+    .mark-sidebar-profile {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+    }
+    .mark-sidebar-profile-toggle {
+        width: 32px;
+        height: 32px;
+    }
+    .mark-sidebar-profile-dropdown {
+        left: unset;
+        right: 16px;
+    }
+
+    .conversation,
+    .mark-content {
+        padding-left: unset;
+    }
+    .content-sidebar {
+        left: unset;
+        z-index: 10;
+        width: 100%;
+    }
+    .mark-sidebar-menu > * > a::before {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 100%;
+        top: unset;
+    }
+    .mark-sidebar-menu > * > a:hover::before {
+        bottom: calc(100% + 8px);
+        left: 50%;
+    }
+
+    .mark-content {
+        position: relative;
+        height: calc(100% - 48px);
+    }
+}
+/* end: Breakpoints */
